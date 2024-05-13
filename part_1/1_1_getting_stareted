@@ -1,0 +1,7 @@
+Script started on 2024-05-13 18:09:00+03:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="179" LINES="10"]
+CONTAINER ID   IMAGE      COMMAND                  CREATED         STATUS                     PORTS      NAMES
+bd3bb7c9b61c   redis      "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes               6379/tcp   dazzling_haibt
+7471ad33b7e1   python     "python3"                3 minutes ago   Exited (0) 3 minutes ago              heuristic_driscoll
+1e632bfeb183   postgres   "docker-entrypoint.s…"   6 minutes ago   Exited (1) 6 minutes ago              objective_darwin
+
+Script done on 2024-05-13 18:09:00+03:00 [COMMAND_EXIT_CODE="0"]

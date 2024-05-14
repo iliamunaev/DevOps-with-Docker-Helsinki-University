@@ -1,0 +1,6 @@
+Script started on 2024-05-14 16:34:09+03:00 [TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="146" LINES="30"]
+REPOSITORY                          TAG       IMAGE ID       CREATED       SIZE
+devopsdockeruh/simple-web-service   ubuntu    4e3362e907d5   3 years ago   83MB
+devopsdockeruh/simple-web-service   alpine    fd312adc88e0   3 years ago   15.7MB
+
+Script done on 2024-05-14 16:34:09+03:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,1 @@
+docker run -v "/home/iliam/DevOps-with-Docker-TKT21036/part_1/1_9_volumes/text.log:/usr/src/app/text.log" devopsdockeruh/simple-web-service

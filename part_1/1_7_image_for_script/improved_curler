@@ -1,0 +1,14 @@
+Script started on 2024-05-15 17:35:02+03:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="83" LINES="15"]
+Searching..
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<html>
+<head><title>301 Moved Permanently</title></head>
+<body>
+<center><h1>301 Moved Permanently</h1></center>
+<hr><center>nginx/1.22.1</center>
+</body>
+</html>
+100   169  100   169    0     0    413      0 --:--:-- --:--:-- --:--:--   412
+
+Script done on 2024-05-15 17:35:04+03:00 [COMMAND_EXIT_CODE="0"]

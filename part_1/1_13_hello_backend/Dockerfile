@@ -1,21 +1,26 @@
-FROM golang:1.16
+FROM ubuntu:latest
 
-WORKDIR /usr/src/app
-
-# pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
-COPY go.mod go.sum ./
-RUN go mod download && go mod verify
+WORKDIR /app
 
 COPY . .
 
+# Set environment variables
+ENV PATH /usr/local/go/bin:$PATH
+ENV REQUEST_ORIGIN http://localhost:5000
+
+# Install dependencies and Go
+RUN apt-get update && \
+    apt-get install -y wget gcc && \
+    rm -rf /usr/local/go && \
+    wget -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz && \
+    go version
+
 RUN go build -o server
+
+# Run tests
+RUN go test ./...
 
 EXPOSE 8080
 
-# Environment variables
-ENV PORT=8080
-
-# Run app
 CMD ["./server"]
-
-

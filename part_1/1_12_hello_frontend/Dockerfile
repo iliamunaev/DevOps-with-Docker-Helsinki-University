@@ -1,21 +1,30 @@
-FROM node:16-alpine
+FROM ubuntu:latest
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src
 
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs
+
+# Verify installation
+RUN node -v && npm -v
+
+# Copy package.json and package-lock.json files to the working directory
 COPY package*.json ./
 
-# Install dependencies
+# Install packages
 RUN npm install
 
 COPY . .
 
-# Build the static files
+# Build static files
 RUN npm run build
 
-# Install the `serve` package to serve the static files
+# Install server
 RUN npm install -g serve
+
 
 EXPOSE 5000
 
-# Run app
 CMD ["serve", "-s", "-l", "5000", "build"]

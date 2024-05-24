@@ -18,5 +18,12 @@ services:
     ports:
       - "8080:8080"
     command: ["./server"]
+    environment:
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
 
+  redis:
+    image: redis
+    container_name: redis
 

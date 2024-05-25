@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ../../material-applications/example-frontend
+      dockerfile: frontend.Dockerfile
+    container_name: frontend
+    ports:
+      - "5000:5000"
+    command: ["serve", "-s", "-l", "5000", "build"]
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ../../material-applications/example-backend
+      dockerfile: backend.Dockerfile
+    container_name: backend
+    ports:
+      - "8080:8080"
+    command: ["./server"]
+    environment:
+      - REDIS_HOST=redis
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    depends_on:
+      - redis
+      - db
+    networks:
+      - app-network
+
+  redis:
+    image: redis
+    container_name: redis
+    networks:
+      - app-network
+
+  db:
+    image: postgres
+    restart: unless-stopped
+    container_name: db_postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - app-network
+
+networks:
+  app-network:

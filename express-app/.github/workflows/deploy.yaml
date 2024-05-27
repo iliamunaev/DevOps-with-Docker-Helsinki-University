@@ -3,9 +3,22 @@ name: Release Node.js app
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
-  build:
+  publish-docker-hub:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        users: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME  }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push Docker image
+        users: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/express-app:latest

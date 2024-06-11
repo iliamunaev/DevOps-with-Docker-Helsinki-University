@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 # Create a non-root user and set it up
-RUN useradd -ms /bin/bash myuser
+RUN useradd -m appuser
 
 WORKDIR /usr/src
 
@@ -22,12 +22,6 @@ RUN npm install
 # Copy the rest of the application
 COPY . .
 
-# Change ownership of the working directory
-RUN chown -R myuser:myuser /usr/src
-
-# Switch to the non-root user
-USER myuser
-
 # Set env for backend
 ENV REACT_APP_BACKEND_URL=http://localhost/api
 
@@ -38,5 +32,11 @@ RUN npm run build
 RUN npm install -g serve
 
 EXPOSE 5000
+
+# Change the owner of current dir to appuser
+RUN chown appuser .
+
+# Change the user
+USER appuser
 
 CMD ["serve", "-s", "-l", "5000", "build"]

@@ -1,42 +1,37 @@
-FROM ubuntu:latest
+FROM alpine:latest
+
+# Install dependencies
+RUN apk update && \
+    apk add --no-cache wget gcc musl-dev go
 
 # Create a non-root user and set it up
-RUN useradd -ms /bin/bash myuser
+RUN adduser -D -g '' myuser
 
-WORKDIR /usr/src
+WORKDIR /app
 
-RUN apt-get update && \
-    apt-get install -y curl && \
-    curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
-    apt-get install -y nodejs
-
-# Verify installation
-RUN node -v && npm -v
-
-# Copy package.json and package-lock.json files to the working directory
-COPY package*.json ./
-
-# Install packages
-RUN npm install
-
-# Copy the rest of the application
 COPY . .
 
 # Change ownership of the working directory
-RUN chown -R myuser:myuser /usr/src
+RUN chown -R myuser:myuser /app
 
 # Switch to the non-root user
 USER myuser
 
-# Set env for backend
-ENV REACT_APP_BACKEND_URL=http://localhost/api
+# Set environment variables
+ENV PATH /usr/local/go/bin:$PATH
+ENV REQUEST_ORIGIN http://localhost:5000
 
-# Build static files
-RUN npm run build
+# Install Go
+RUN wget -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz && \
+    go version
 
-# Install server
-RUN npm install -g serve
+# Build the application
+RUN go build -o server
 
-EXPOSE 5000
+# Run tests
+RUN go test ./...
 
-CMD ["serve", "-s", "-l", "5000", "build"]
+EXPOSE 8080
+
+CMD ["./server"]

@@ -1,13 +1,17 @@
 FROM ubuntu:latest
 
-# Create the appuser
-RUN useradd  -m appuser
+# Create a non-root user and set it up
+RUN useradd -ms /bin/bash myuser
 
-# Set working directory
 WORKDIR /app
 
-# Copy all files to the working directory
 COPY . .
+
+# Change ownership of the working directory
+RUN chown -R myuser:myuser /usr/src
+
+# Switch to the non-root user
+USER myuser
 
 # Set environment variables
 ENV PATH /usr/local/go/bin:$PATH
@@ -21,13 +25,6 @@ RUN apt-get update && \
     tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz && \
     go version
 
-# Change ownership of the working directory and Go installation
-RUN chown -R appuser:appuser /app /usr/local/go
-
-# Switch to non-root user
-USER appuser
-
-# Build the Go application
 RUN go build -o server
 
 # Run tests

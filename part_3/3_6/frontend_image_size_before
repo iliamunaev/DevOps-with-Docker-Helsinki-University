@@ -1,0 +1,18 @@
+IMAGE          CREATED              CREATED BY                                      SIZE      COMMENT
+35df65a7615c   About a minute ago   CMD ["serve" "-s" "-l" "5000" "build"]          0B        buildkit.dockerfile.v0
+<missing>      About a minute ago   USER appuser                                    0B        buildkit.dockerfile.v0
+<missing>      About a minute ago   RUN /bin/sh -c useradd -m appuser &&     cho…   9.66kB    buildkit.dockerfile.v0
+<missing>      About a minute ago   EXPOSE map[5000/tcp:{}]                         0B        buildkit.dockerfile.v0
+<missing>      About a minute ago   RUN /bin/sh -c npm run build &&     npm inst…   15.1MB    buildkit.dockerfile.v0
+<missing>      About a minute ago   ENV REACT_APP_BACKEND_URL=http://localhost/a…   0B        buildkit.dockerfile.v0
+<missing>      2 minutes ago        COPY . . # buildkit                             725kB     buildkit.dockerfile.v0
+<missing>      2 minutes ago        RUN /bin/sh -c npm install # buildkit           350MB     buildkit.dockerfile.v0
+<missing>      4 minutes ago        COPY package*.json ./ # buildkit                709kB     buildkit.dockerfile.v0
+<missing>      4 minutes ago        RUN /bin/sh -c apt-get update &&     apt-get…   152MB     buildkit.dockerfile.v0
+<missing>      6 minutes ago        WORKDIR /usr/src                                0B        buildkit.dockerfile.v0
+<missing>      12 days ago          /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B        
+<missing>      12 days ago          /bin/sh -c #(nop) ADD file:7f5ee17de6aff2b67…   76.2MB    
+<missing>      12 days ago          /bin/sh -c #(nop)  LABEL org.opencontainers.…   0B        
+<missing>      12 days ago          /bin/sh -c #(nop)  LABEL org.opencontainers.…   0B        
+<missing>      12 days ago          /bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH     0B        
+<missing>      12 days ago          /bin/sh -c #(nop)  ARG RELEASE                  0B        

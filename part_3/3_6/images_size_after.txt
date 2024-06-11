@@ -1,0 +1,6 @@
+REPOSITORY      TAG       IMAGE ID       CREATED          SIZE
+2_10-frontend   latest    48dbd37676c5   37 seconds ago   737MB
+2_10-backend    latest    6bc26a39a32e   8 minutes ago    630MB
+nginx           latest    4f67c83422ec   12 days ago      188MB
+redis           latest    1a83fd5edeed   2 weeks ago      117MB
+postgres        latest    cff6b68a194a   4 weeks ago      432MB

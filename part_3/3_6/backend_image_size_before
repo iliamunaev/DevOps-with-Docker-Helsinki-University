@@ -1,0 +1,16 @@
+IMAGE          CREATED          CREATED BY                                      SIZE      COMMENT
+ba37a0abc60a   7 minutes ago    CMD ["./server"]                                0B        buildkit.dockerfile.v0
+<missing>      7 minutes ago    USER appuser                                    0B        buildkit.dockerfile.v0
+<missing>      7 minutes ago    RUN /bin/sh -c useradd -m appuser &&     cho…   9.66kB    buildkit.dockerfile.v0
+<missing>      7 minutes ago    EXPOSE map[8080/tcp:{}]                         0B        buildkit.dockerfile.v0
+<missing>      7 minutes ago    RUN /bin/sh -c apt-get update &&     apt-get…   794MB     buildkit.dockerfile.v0
+<missing>      7 minutes ago    ENV REQUEST_ORIGIN=http://localhost:5000        0B        buildkit.dockerfile.v0
+<missing>      7 minutes ago    ENV PATH=/usr/local/go/bin:/usr/local/sbin:/…   0B        buildkit.dockerfile.v0
+<missing>      15 minutes ago   COPY . . # buildkit                             29.7kB    buildkit.dockerfile.v0
+<missing>      15 minutes ago   WORKDIR /app                                    0B        buildkit.dockerfile.v0
+<missing>      12 days ago      /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B        
+<missing>      12 days ago      /bin/sh -c #(nop) ADD file:7f5ee17de6aff2b67…   76.2MB    
+<missing>      12 days ago      /bin/sh -c #(nop)  LABEL org.opencontainers.…   0B        
+<missing>      12 days ago      /bin/sh -c #(nop)  LABEL org.opencontainers.…   0B        
+<missing>      12 days ago      /bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH     0B        
+<missing>      12 days ago      /bin/sh -c #(nop)  ARG RELEASE                  0B        

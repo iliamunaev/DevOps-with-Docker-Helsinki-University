@@ -3,7 +3,7 @@ FROM golang:alpine AS builder
 
 WORKDIR /app
 
-COPY . .
+COPY ../3_8 .
 
 # Set environment variable
 ENV REQUEST_ORIGIN http://localhost:5000
